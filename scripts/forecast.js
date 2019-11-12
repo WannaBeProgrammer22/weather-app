@@ -9,10 +9,10 @@ const getCity = async (city) => {
   return data[0];
 }
 
-const getWeather = async (cityDetails) => {
+const getWeather = async (key) => {
 
   const resourceURL = 'http://dataservice.accuweather.com/currentconditions/v1/';
-  const query = `${cityDetails.Key}?apikey=${apikey}`;
+  const query = `${key}?apikey=${apikey}`;
 
   const response = await fetch(resourceURL + query);
   const data = await response.json();
