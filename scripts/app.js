@@ -4,8 +4,6 @@ const icon = document.querySelector('.icon img');
 const details = document.querySelector('.details');
 const time = document.querySelector('.time');
 
-
-
 searchWeather.addEventListener('submit', e => {
   e.preventDefault();
 
@@ -14,6 +12,9 @@ searchWeather.addEventListener('submit', e => {
   updateCity(city)
     .then(data => updateUI(data))
     .catch(err => console.log(err));
+
+
+  localStorage.setItem('city', city);
 
   searchWeather.reset();
 
@@ -61,5 +62,10 @@ const updateUI = data => {
     card.classList.remove('d-none');
   }
 
-
 };
+
+if (localStorage.getItem('city')) {
+  updateCity(localStorage.getItem('city'))
+    .then(data => updateUI(data))
+    .catch(err => console.log(err));
+}
